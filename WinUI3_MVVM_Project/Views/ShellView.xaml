@@ -1,0 +1,61 @@
+<UserControl
+    x:Class="WinUI3_MVVM_Project.Views.ShellView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinUI3_MVVM_Project.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodels="using:WinUI3_MVVM_Project.ViewModels"
+    xmlns:converters="using:WinUI3_MVVM_Project.Converters"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <converters:ViewModelToViewConverter x:Key="ViewModelToViewConverter"/>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <NavigationView x:Name="AppNavigationView"
+                        PaneDisplayMode="Left"
+                        IsBackButtonVisible="Collapsed"
+                        IsSettingsVisible="False"
+                        SelectedItem="{x:Bind ViewModel.SelectedNavigationViewItem, Mode=TwoWay}"
+                        Visibility="{x:Bind ViewModel.IsUserLoggedIn, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <NavigationView.Resources>
+                <SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="DarkBlue"/>
+                <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="DarkBlue"/>
+                <SolidColorBrush x:Key="NavigationViewPaneBackground" Color="DarkBlue"/>
+
+                <SolidColorBrush x:Key="NavigationViewItemForeground" Color="White"/>
+                <SolidColorBrush x:Key="NavigationViewItemForegroundPointerOver" Color="LightGray"/>
+                <SolidColorBrush x:Key="NavigationViewItemForegroundPressed" Color="Gainsboro"/>
+                <SolidColorBrush x:Key="NavigationViewItemForegroundSelected" Color="White"/>
+                <SolidColorBrush x:Key="NavigationViewItemForegroundSelectedPointerOver" Color="White"/>
+                <SolidColorBrush x:Key="NavigationViewItemForegroundSelectedPressed" Color="White"/>
+
+                <SolidColorBrush x:Key="NavigationViewItemBackgroundSelected" Color="RoyalBlue"/>
+                <SolidColorBrush x:Key="NavigationViewItemBackgroundSelectedPointerOver" Color="CornflowerBlue"/>
+                <SolidColorBrush x:Key="NavigationViewItemBackgroundSelectedPressed" Color="DodgerBlue"/>
+
+                <SolidColorBrush x:Key="NavigationViewPaneToggleButtonForeground" Color="White"/>
+                <SolidColorBrush x:Key="NavigationViewPaneToggleButtonForegroundPointerOver" Color="LightGray"/>
+                <SolidColorBrush x:Key="NavigationViewPaneToggleButtonForegroundPressed" Color="Gainsboro"/>
+
+            </NavigationView.Resources>
+            <NavigationView.MenuItems>
+                <NavigationViewItem Content="Thông tin cá nhân" Tag="ProfilePage" Icon="Contact"/>
+                <NavigationViewItem Content="Quản lý người dùng" Tag="UserManagementPage" Icon="People"/>
+            </NavigationView.MenuItems>
+            <NavigationView.FooterMenuItems>
+                <NavigationViewItem Content="Đăng xuất" Tag="Logout" Icon="OtherUser"/>
+            </NavigationView.FooterMenuItems>
+
+            <Frame x:Name="ContentFrame"
+                   Content="{x:Bind ViewModel.CurrentViewModel, Mode=OneWay, Converter={StaticResource ViewModelToViewConverter}}"/>
+        </NavigationView>
+
+        <Frame x:Name="LoginContentFrame"
+               Content="{x:Bind ViewModel.CurrentViewModel, Mode=OneWay, Converter={StaticResource ViewModelToViewConverter}}"
+               Visibility="{x:Bind ViewModel.IsUserLoggedIn, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=True}"/>
+    </Grid>
+</UserControl>

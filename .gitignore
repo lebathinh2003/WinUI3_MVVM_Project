@@ -1,0 +1,50 @@
+# Build results
+bin/
+obj/
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.vcxproj.user
+
+# Visual Studio Code
+.vscode/
+
+# Visual Studio
+.vs/
+*.dbmdl
+*.pdb
+*.cache
+*.sdf
+*.opensdf
+
+# Backup & temporary files
+*~
+*.tmp
+*.bak
+
+# Windows-specific
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# .NET
+project.lock.json
+project.fragment.lock.json
+artifacts/
+*.nupkg
+*.snupkg
+*.log
+
+# WinUI 3-specific
+AppPackages/
+BundleArtifacts/
+Generated Files/
+Package.appxmanifest.bak
+
+# MSBuild generated
+GeneratedFiles/
+
+# Others
+TestResults/

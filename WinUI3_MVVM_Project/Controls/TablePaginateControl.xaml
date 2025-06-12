@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="WinUI3_MVVM_Project.Controls.TablePaginateControl"
+    x:Name="Root"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinUI3_MVVM_Project.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="NavigationButtonStyle" TargetType="Button">
+            <Setter Property="MinWidth" Value="40"/>
+            <Setter Property="MinHeight" Value="40"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="{ThemeResource ButtonBorderBrush}"/>
+            <Setter Property="BorderThickness" Value="{ThemeResource ButtonBorderThemeThickness}"/>
+            <Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel Orientation="Horizontal" Spacing="5" HorizontalAlignment="Center">
+        <Button x:Name="FirstButton" 
+                Style="{StaticResource NavigationButtonStyle}"
+                Command="{x:Bind ViewModel.FirstPageCommand, Mode=OneWay}"
+                ToolTipService.ToolTip="Về trang đầu">
+            <FontIcon Glyph="&#xE892;" />
+        </Button>
+
+        <Button x:Name="PreviousButton" 
+                Style="{StaticResource NavigationButtonStyle}"
+                Command="{x:Bind ViewModel.PreviousPageCommand, Mode=OneWay}"
+                ToolTipService.ToolTip="Trang trước">
+            <FontIcon Glyph="&#xF743;" />
+        </Button>
+
+        <TextBlock Text="{x:Bind DisplayCurrentPageInfo, Mode=OneWay, FallbackValue='1 / 1'}" 
+                   VerticalAlignment="Center" 
+                   Margin="10,0"
+                   Style="{ThemeResource BodyTextBlockStyle}"/>
+
+        <Button x:Name="NextButton" 
+                Style="{StaticResource NavigationButtonStyle}"
+                Command="{x:Bind ViewModel.NextPageCommand, Mode=OneWay}"
+                ToolTipService.ToolTip="Trang sau">
+            <FontIcon Glyph="&#xF745;" />
+        </Button>
+
+        <Button x:Name="LastButton" 
+                Style="{StaticResource NavigationButtonStyle}"
+                Command="{x:Bind ViewModel.LastPageCommand, Mode=OneWay}"
+                ToolTipService.ToolTip="Về trang cuối">
+            <FontIcon Glyph="&#xE893;" />
+        </Button>
+    </StackPanel>
+</UserControl>
