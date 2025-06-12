@@ -11,6 +11,7 @@ public sealed partial class MainWindow : Window
 
         // Thiết lập tiêu đề cho cửa sổ
         Title = "WinUI 3 MVVM Project";
+        //Thêm control
 
         // Kích thước cửa sổ ban đầu (tùy chọn)
         // AppWindow.Resize(new Windows.Graphics.SizeInt32(1024, 768));
